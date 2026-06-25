@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acampe sem Passar Perrengue | Guia Definitivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: '#2E4A35',
+                        secondary: '#556B2F',
+                        accent: '#D4A373',
+                        light: '#F5F5DC',
+                        dark: '#1C231F'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; color: #1C231F; scroll-behavior: smooth; overflow-x: hidden; }
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(28, 35, 31, 0.85), rgba(46, 74, 53, 0.85)), url('https://images.unsplash.com/photo-1504280390227-331bfcb19af2?auto=format&fit=crop&q=80&w=1920') center/cover fixed;
+        }
+        .btn-cta {
+            background: linear-gradient(135deg, #D4A373, #B8860B);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(212, 163, 115, 0.5);
+        }
+        .btn-cta::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.2);
+            transform: rotate(45deg) translateY(-100%);
+            transition: transform 0.6s ease;
+        }
+        .btn-cta:hover::after {
+            transform: rotate(45deg) translateY(100%);
+        }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; opacity: 0; }
+        .faq-answer.open { max-height: 500px; opacity: 1; }
+        
+        /* Modern subtle floating animation for hero image */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(-2deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(-2deg); }
+        }
+        .floating-img { animation: float 6s ease-in-out infinite; }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-white">
+
+    <!-- Hero Section -->
+    <header class="hero-bg text-white min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-primary opacity-40"></div>
+        <div class="container mx-auto px-6 py-24 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8 fade-in visible">
+                <span class="text-accent font-bold tracking-[0.2em] uppercase text-xs border border-accent px-4 py-1.5 rounded-full bg-accent/10">O Guia Definitivo para Iniciantes</span>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight">
+                    Sua próxima aventura não precisa virar um <span class="text-accent relative inline-block">perrengue.<svg class="absolute -bottom-2 left-0 w-full h-3 text-accent" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 10 Q50 20 100 10" stroke="currentColor" stroke-width="4" fill="transparent"/></svg></span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-200 font-light leading-relaxed max-w-lg">
+                    Aprenda tudo o que você precisa saber para acampar com segurança, conforto e confiança — mesmo que nunca tenha montado uma barraca na vida.
+                </p>
+                <div class="pt-4">
+                    <a href="https://hotmart.com/pt-br/marketplace/produtos/acampe-sem-passar-perrengue/V80320834A" class="btn-cta inline-flex items-center justify-center text-white font-bold text-lg px-8 py-5 rounded-2xl w-full md:w-auto">
+                        QUERO ACAMPAR SEM PASSAR PERRENGUE
+                        <i class="fas fa-arrow-right ml-3"></i>
+                    </a>
+                </div>
+                <div class="flex items-center gap-4 text-sm text-gray-300 mt-2">
+                    <div class="flex text-accent space-x-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <span>De um velho trilheiro para novos trilheiros.</span>
+                </div>
+            </div>
+            <div class="relative flex justify-center fade-in visible">
+                <div class="absolute inset-0 bg-accent rounded-full blur-[80px] opacity-30"></div>
+                <img src="img/capa_livro.jpg" alt="E-book Acampe Sem Passar Perrengue" class="relative z-10 w-full max-w-[380px] rounded-3xl shadow-2xl border-4 border-white/10 floating-img object-cover aspect-[3/4]">
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+            <i class="fas fa-chevron-down text-2xl text-white/70"></i>
+        </div>
+    </header>
+
+    <!-- Você se Identifica -->
+    <section class="py-24 bg-[#FAFAFA]">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-black text-dark mb-4 tracking-tight">Você já passou por isso?</h2>
+                <p class="text-gray-500 text-xl font-light">Acampar deve ser libertador, mas a falta de preparo transforma o sonho em pesadelo.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-300 fade-in group">
+                    <div class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-3 text-dark">Frio Insuportável</h3>
+                    <p class="text-gray-600 leading-relaxed">Passar a noite tremendo de frio porque não levou o isolante térmico adequado ou o saco de dormir certo.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-300 fade-in group">
+                    <div class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-weight-hanging"></i>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-3 text-dark">Peso Desnecessário</h3>
+                    <p class="text-gray-600 leading-relaxed">Carregar uma mochila pesadíssima cheia de itens inúteis e terminar a trilha com dores extremas.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-300 fade-in group">
+                    <div class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-3 text-dark">Medo de se Perder</h3>
+                    <p class="text-gray-600 leading-relaxed">Entrar na trilha sem saber rotas, navegação, ou como se comunicar em caso de emergência.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-300 fade-in group">
+                    <div class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-3 text-dark">Dinheiro no Lixo</h3>
+                    <p class="text-gray-600 leading-relaxed">Gastar fortunas comprando equipamentos caros que simplesmente não servem para a sua aventura.</p>
+                </div>
+                <!-- Card 5 -->
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-300 fade-in group">
+                    <div class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-tint-slash"></i>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-3 text-dark">Ficar Sem Água</h3>
+                    <p class="text-gray-600 leading-relaxed">Não saber calcular a quantidade de água necessária e não conhecer as técnicas de purificação corretas.</p>
+                </div>
+                <!-- Card 6 -->
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)] transition-all duration-300 fade-in group">
+                    <div class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-campground"></i>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-3 text-dark">Barraca Alagada</h3>
+                    <p class="text-gray-600 leading-relaxed">Acordar no meio da noite com a barraca encharcada porque escolheu ou armou no local errado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O Que Você Vai Aprender -->
+    <section class="py-24 bg-white relative">
+        <div class="container mx-auto px-6 max-w-6xl relative z-10">
+            <div class="flex flex-col md:flex-row gap-16 items-center">
+                <div class="w-full md:w-1/3 space-y-6 fade-in">
+                    <span class="text-primary font-bold uppercase tracking-wider text-sm">O Conteúdo do E-book</span>
+                    <h2 class="text-4xl md:text-5xl font-black text-dark leading-tight">Tudo o que você vai dominar</h2>
+                    <p class="text-gray-600 text-lg">Um passo a passo completo, estruturado em capítulos práticos, indo da preparação do seu corpo até a navegação segura.</p>
+                </div>
+                <div class="w-full md:w-2/3 grid md:grid-cols-2 gap-6">
+                    <div class="glass p-8 rounded-3xl border border-gray-100 bg-gray-50/50 fade-in">
+                        <div class="text-primary text-xl mb-4 font-bold"><i class="fas fa-hiking mr-2"></i> Preparo e Destino</div>
+                        <p class="text-gray-600">Avalie sua saúde, escolha rotas seguras, analise o clima e prepare-se antes de sair de casa.</p>
+                    </div>
+                    <div class="glass p-8 rounded-3xl border border-gray-100 bg-gray-50/50 fade-in">
+                        <div class="text-primary text-xl mb-4 font-bold"><i class="fas fa-toolbox mr-2"></i> Equipamentos Essenciais</div>
+                        <p class="text-gray-600">Monte o Kit Saúde, Kit Fogo e Ferramentas. Descubra o que realmente funciona.</p>
+                    </div>
+                    <div class="glass p-8 rounded-3xl border border-gray-100 bg-gray-50/50 fade-in">
+                        <div class="text-primary text-xl mb-4 font-bold"><i class="fas fa-temperature-low mr-2"></i> Sistema de Camadas</div>
+                        <p class="text-gray-600">Aprenda a se vestir adequadamente contra o frio e evite a hipotermia.</p>
+                    </div>
+                    <div class="glass p-8 rounded-3xl border border-gray-100 bg-gray-50/50 fade-in">
+                        <div class="text-primary text-xl mb-4 font-bold"><i class="fas fa-bed mr-2"></i> Acampamento Seguro</div>
+                        <p class="text-gray-600">Escolha de barracas, redes, sacos de dormir e isolantes térmicos corretos.</p>
+                    </div>
+                    <div class="glass p-8 rounded-3xl border border-gray-100 bg-gray-50/50 fade-in">
+                        <div class="text-primary text-xl mb-4 font-bold"><i class="fas fa-utensils mr-2"></i> Alimentação & Água</div>
+                        <p class="text-gray-600">Técnicas de purificação de água, comidas liofilizados e energia para longas caminhadas.</p>
+                    </div>
+                    <div class="glass p-8 rounded-3xl border border-gray-100 bg-gray-50/50 fade-in">
+                        <div class="text-primary text-xl mb-4 font-bold"><i class="fas fa-exclamation-triangle mr-2"></i> Sobrevivência</div>
+                        <p class="text-gray-600">Como agir sob ventania, chuva extrema, e o passo a passo caso você se perca.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais e Transformação -->
+    <section class="py-24 bg-dark text-white overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-primary/20 blur-[150px] rounded-full pointer-events-none"></div>
+        <div class="container mx-auto px-6 max-w-6xl relative z-10">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="fade-in">
+                    <h2 class="text-4xl md:text-5xl font-black mb-8 leading-tight">O que torna este guia <span class="text-accent">único?</span></h2>
+                    <ul class="space-y-6 text-lg text-gray-300">
+                        <li class="flex items-start gap-4">
+                            <i class="fas fa-check-circle text-accent text-2xl mt-1"></i> 
+                            <div>
+                                <strong class="text-white block mb-1">Linguagem Simples e Direta</strong>
+                                Escrito como uma conversa amigável ao redor da fogueira, sem jargões confusos.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fas fa-check-circle text-accent text-2xl mt-1"></i> 
+                            <div>
+                                <strong class="text-white block mb-1">Feito para Iniciantes</strong>
+                                Do zero ao seu primeiro acampamento com 100% de segurança.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fas fa-check-circle text-accent text-2xl mt-1"></i> 
+                            <div>
+                                <strong class="text-white block mb-1">Economia Imediata</strong>
+                                Evita que você compre equipamentos caros que não servem para você.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fas fa-check-circle text-accent text-2xl mt-1"></i> 
+                            <div>
+                                <strong class="text-white block mb-1">Baseado na Vida Real</strong>
+                                Experiência extraída de anos de prática no mundo outdoor, não apenas teoria.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white/5 backdrop-blur-xl p-10 rounded-[2rem] border border-white/10 shadow-2xl fade-in relative">
+                    <h3 class="text-3xl font-bold mb-8 text-center">A Sua Transformação</h3>
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-r from-red-500/20 to-red-500/5 border border-red-500/20 p-6 rounded-2xl">
+                            <p class="font-bold text-red-400 mb-3 text-sm tracking-widest uppercase">Antes</p>
+                            <div class="flex flex-wrap gap-2 text-sm font-medium">
+                                <span class="bg-black/20 text-red-200 px-4 py-1.5 rounded-full"><i class="fas fa-times opacity-50 mr-1"></i> Medo Constante</span>
+                                <span class="bg-black/20 text-red-200 px-4 py-1.5 rounded-full"><i class="fas fa-times opacity-50 mr-1"></i> Equipamentos Errados</span>
+                                <span class="bg-black/20 text-red-200 px-4 py-1.5 rounded-full"><i class="fas fa-times opacity-50 mr-1"></i> Gastos Desnecessários</span>
+                                <span class="bg-black/20 text-red-200 px-4 py-1.5 rounded-full"><i class="fas fa-times opacity-50 mr-1"></i> Falta de Preparo</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-center -my-3 relative z-10">
+                            <div class="bg-accent text-dark w-12 h-12 flex items-center justify-center rounded-full shadow-lg border-4 border-dark">
+                                <i class="fas fa-arrow-down text-xl"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-primary/60 to-primary/20 border border-green-500/30 p-6 rounded-2xl relative overflow-hidden">
+                            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                            <p class="font-bold text-green-400 mb-3 text-sm tracking-widest uppercase relative z-10">Depois</p>
+                            <div class="flex flex-wrap gap-2 text-sm font-medium relative z-10">
+                                <span class="bg-white/10 text-white px-4 py-1.5 rounded-full border border-white/5"><i class="fas fa-check text-green-400 mr-1"></i> Total Confiança</span>
+                                <span class="bg-white/10 text-white px-4 py-1.5 rounded-full border border-white/5"><i class="fas fa-check text-green-400 mr-1"></i> Segurança Absoluta</span>
+                                <span class="bg-white/10 text-white px-4 py-1.5 rounded-full border border-white/5"><i class="fas fa-check text-green-400 mr-1"></i> Planejamento Perfeito</span>
+                                <span class="bg-white/10 text-white px-4 py-1.5 rounded-full border border-white/5"><i class="fas fa-check text-green-400 mr-1"></i> Mochila Otimizada</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria Visual Premium -->
+    <section class="py-24 bg-[#FAFAFA]">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-black text-dark mb-4">A natureza te espera.</h2>
+                <p class="text-gray-500 text-xl font-light">Esteja preparado para vivenciar experiências inesquecíveis.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="relative group rounded-3xl overflow-hidden shadow-lg h-80 fade-in">
+                    <img src="img/pico-do-lopo-MG.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Pico do Lopo - Extrema - MG" >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Pico do Lopo, Extrema - MG</span>
+                    </div>
+                </div>
+                <div class="relative group rounded-3xl overflow-hidden shadow-lg h-80 fade-in">
+                    <img src="img/pico-pedra-da-mina-MG.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Pico Pedra da Mina, Passa Quatro - MG" >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Pico Pedra da Mina, Passa Quatro - MG</span>
+                    </div>
+                </div>
+                <div class="relative group rounded-3xl overflow-hidden shadow-lg h-80 fade-in">
+                    <img src="img/pico-da-lua-SP.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Pico da Lua - São Roque - SP" >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Pico da Lua, São Roque - SP</span>
+                    </div>
+                </div>
+                <div class="relative group rounded-3xl overflow-hidden shadow-lg h-80 fade-in">
+                    <img src="img/pico-parana-antonina-PR.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Pico Paraná , Antonina - PR" >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-bold text-lg">Pico Paraná, Antonina - PR</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publico Alvo -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="bg-white rounded-[2.5rem] shadow-[0_20px_60px_rgba(0,0,0,0.08)] overflow-hidden flex flex-col md:flex-row border border-gray-100 fade-in">
+                <div class="md:w-1/2 p-12 bg-primary text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+                    <h3 class="text-3xl font-bold mb-8 border-b border-white/20 pb-4 relative z-10">Para quem <span class="text-accent">É</span> este e-book?</h3>
+                    <ul class="space-y-5 text-lg relative z-10">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent text-xl w-8"></i> Iniciantes querendo começar.</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent text-xl w-8"></i> Pessoas que já passaram perrengue.</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent text-xl w-8"></i> Amantes de Trekking e Hiking.</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent text-xl w-8"></i> Famílias em busca de lazer outdoor.</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-accent text-xl w-8"></i> Qualquer um apaixonado por natureza.</li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 p-12 bg-gray-50 text-dark">
+                    <h3 class="text-3xl font-bold mb-8 border-b border-gray-200 pb-4">Para quem <span class="text-red-500">NÃO É?</span></h3>
+                    <ul class="space-y-5 text-lg text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-times-circle text-red-500 text-xl w-8"></i> Pessoas que detestam atividades ao ar livre.</li>
+                        <li class="flex items-center"><i class="fas fa-times-circle text-red-500 text-xl w-8"></i> Sobrevivencialistas experientes (nível militar).</li>
+                        <li class="flex items-center"><i class="fas fa-times-circle text-red-500 text-xl w-8"></i> Quem procura um "guia mágico" sem aplicar o conhecimento.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Autor -->
+    <section class="py-24 bg-[#FAFAFA]">
+        <div class="container mx-auto px-6 max-w-4xl text-center fade-in">
+            <div class="w-40 h-40 mx-auto bg-gray-200 rounded-full mb-8 border-8 border-white shadow-xl overflow-hidden relative">
+                <img src="img/foto_autor.jpeg?auto=format&fit=crop&q=80&w=400" alt="Johny Carlos Autor" class="w-full h-full object-cover">
+            </div>
+            <span class="text-primary font-bold tracking-widest uppercase text-sm">O Autor</span>
+            <h2 class="text-4xl font-black text-dark mt-2 mb-8">Johny Carlos</h2>
+            <div class="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100 relative">
+                <i class="fas fa-quote-left text-4xl text-gray-200 absolute top-8 left-8"></i>
+                <p class="text-gray-600 text-lg md:text-xl leading-relaxed relative z-10 italic">
+                    O universo outdoor me cativou no final de 2016 no Pico do Lopo. Fiquei totalmente extasiado ao contemplar o horizonte ao nascer do sol. Minha vida nunca mais foi a mesma. 
+                    <br><br>
+                    Quero te mostrar esse mundo. Porém, <strong class="text-dark">não quero que você passe pelos perrengues que enfrentei.</strong> Condensei mais de 8 anos de aprendizado em um e-book prático, com a melhor e mais completa base para te guiar nas suas aventuras.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Oferta -->
+    <section class="py-24 bg-dark text-white relative">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&q=80&w=1920')] bg-cover bg-center opacity-10"></div>
+        <div class="container mx-auto px-6 max-w-5xl relative z-10 fade-in">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-6xl font-black mb-4">Acesso Imediato ao Material Premium</h2>
+                <p class="text-xl text-gray-400 font-light">Sua preparação definitiva em um formato digital perfeito.</p>
+            </div>
+            
+            <div class="bg-gradient-to-b from-primary/80 to-dark/90 backdrop-blur-xl p-1 md:p-12 rounded-[3rem] border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.5)] max-w-3xl mx-auto overflow-hidden">
+                <div class="p-8 md:p-0 text-center">
+                    <span class="inline-block bg-accent/20 text-accent font-bold px-4 py-1.5 rounded-full text-sm mb-6 border border-accent/30">PRODUTO DIGITAL</span>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-3">E-book: Acampe Sem Passar Perrengue</h3>
+                    <p class="text-gray-300 mb-10 text-lg">O guia passo a passo em PDF (101 Páginas)</p>
+                    
+                    <div class="bg-black/30 rounded-3xl p-8 mb-10 max-w-xl mx-auto border border-white/5">
+                        <ul class="text-left space-y-5 text-lg">
+                            <li class="flex items-center"><div class="bg-accent/20 p-2 rounded-full mr-4"><i class="fas fa-check text-accent w-4 h-4 flex items-center justify-center"></i></div> Acesso Vitalício</li>
+                            <li class="flex items-center"><div class="bg-accent/20 p-2 rounded-full mr-4"><i class="fas fa-check text-accent w-4 h-4 flex items-center justify-center"></i></div> Leitura no Celular, Tablet ou PC</li>
+                            <li class="flex items-center"><div class="bg-accent/20 p-2 rounded-full mr-4"><i class="fas fa-check text-accent w-4 h-4 flex items-center justify-center"></i></div> Material prático e direto ao ponto</li>
+                            <li class="flex items-center"><div class="bg-accent/20 p-2 rounded-full mr-4"><i class="fas fa-check text-accent w-4 h-4 flex items-center justify-center"></i></div> Bônus exclusivos incluídos</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="https://hotmart.com/pt-br/marketplace/produtos/acampe-sem-passar-perrengue/V80320834A" class="btn-cta inline-flex items-center justify-center text-white font-bold text-xl px-12 py-6 rounded-2xl shadow-[0_0_30px_rgba(212,163,115,0.4)] w-full max-w-xl mx-auto">
+                        <i class="fas fa-shopping-cart mr-3"></i> QUERO COMPRAR AGORA
+                    </a>
+                    
+                    <div class="flex justify-center items-center gap-6 mt-8 text-gray-500">
+                        <i class="fab fa-cc-visa text-3xl hover:text-white transition-colors"></i>
+                        <i class="fab fa-cc-mastercard text-3xl hover:text-white transition-colors"></i>
+                        <i class="fas fa-qrcode text-3xl hover:text-white transition-colors"></i>
+                        <div class="flex items-center border-l border-gray-700 pl-6 ml-2">
+                            <i class="fas fa-lock text-xl text-green-500 mr-2"></i> 
+                            <span class="text-sm font-medium">Pagamento 100% Seguro Hotmart</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <div class="text-center mb-16 fade-in">
+                <span class="text-primary font-bold uppercase tracking-wider text-sm">Tire suas dúvidas</span>
+                <h2 class="text-4xl font-black text-dark mt-2 mb-4">Perguntas Frequentes</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- Question 1 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden fade-in bg-white shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full text-left p-6 font-bold text-lg text-dark flex justify-between items-center outline-none focus:ring-2 focus:ring-primary/20" onclick="toggleFaq(this)">
+                        O e-book serve para iniciantes?
+                        <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shrink-0 ml-4 border border-gray-200">
+                            <i class="fas fa-plus text-primary transition-transform duration-300 text-sm"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6 bg-white">
+                        <p class="pb-6 text-gray-600">Sim! Foi escrito com linguagem simples e direta, perfeito para quem nunca montou uma barraca na vida. Funciona como um passo a passo do zero.</p>
+                    </div>
+                </div>
+                <!-- Question 2 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden fade-in bg-white shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full text-left p-6 font-bold text-lg text-dark flex justify-between items-center outline-none focus:ring-2 focus:ring-primary/20" onclick="toggleFaq(this)">
+                        Preciso ter equipamentos caros?
+                        <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shrink-0 ml-4 border border-gray-200">
+                            <i class="fas fa-plus text-primary transition-transform duration-300 text-sm"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6 bg-white">
+                        <p class="pb-6 text-gray-600">De forma alguma. O maior objetivo deste guia é evitar que você gaste dinheiro à toa. Você aprenderá a escolher os itens com o melhor custo-benefício.</p>
+                    </div>
+                </div>
+                <!-- Question 3 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden fade-in bg-white shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full text-left p-6 font-bold text-lg text-dark flex justify-between items-center outline-none focus:ring-2 focus:ring-primary/20" onclick="toggleFaq(this)">
+                        Recebo o material na hora?
+                        <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shrink-0 ml-4 border border-gray-200">
+                            <i class="fas fa-plus text-primary transition-transform duration-300 text-sm"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6 bg-white">
+                        <p class="pb-6 text-gray-600">Sim! Assim que o pagamento for confirmado (Pix e Cartão são instantâneos), você recebe o acesso ao PDF no seu e-mail cadastrado através da Hotmart.</p>
+                    </div>
+                </div>
+                <!-- Question 4 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden fade-in bg-white shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full text-left p-6 font-bold text-lg text-dark flex justify-between items-center outline-none focus:ring-2 focus:ring-primary/20" onclick="toggleFaq(this)">
+                        Posso ler pelo celular?
+                        <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shrink-0 ml-4 border border-gray-200">
+                            <i class="fas fa-plus text-primary transition-transform duration-300 text-sm"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6 bg-white">
+                        <p class="pb-6 text-gray-600">Com certeza. O formato PDF é universal e perfeitamente legível na tela do celular, tablet ou no computador. Leve o guia com você para qualquer lugar.</p>
+                    </div>
+                </div>
+                <!-- Question 5 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden fade-in bg-white shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full text-left p-6 font-bold text-lg text-dark flex justify-between items-center outline-none focus:ring-2 focus:ring-primary/20" onclick="toggleFaq(this)">
+                        O conteúdo serve para trilhas (Trekking)?
+                        <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shrink-0 ml-4 border border-gray-200">
+                            <i class="fas fa-plus text-primary transition-transform duration-300 text-sm"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6 bg-white">
+                        <p class="pb-6 text-gray-600">Exatamente. O conteúdo cobre desde a caminhada e planejamento da trilha até a escolha da mochila correta e técnicas avançadas de acampamento em locais remotos.</p>
+                    </div>
+                </div>
+                <!-- Question 6 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden fade-in bg-white shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full text-left p-6 font-bold text-lg text-dark flex justify-between items-center outline-none focus:ring-2 focus:ring-primary/20" onclick="toggleFaq(this)">
+                        Ensina a não passar frio à noite?
+                        <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shrink-0 ml-4 border border-gray-200">
+                            <i class="fas fa-plus text-primary transition-transform duration-300 text-sm"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6 bg-white">
+                        <p class="pb-6 text-gray-600">Sim. Dedicamos uma grande seção ao famoso "Sistema de Camadas", além de detalhar a escolha exata do saco de dormir e isolante térmico.</p>
+                    </div>
+                </div>
+                <!-- Question 7 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden fade-in bg-white shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full text-left p-6 font-bold text-lg text-dark flex justify-between items-center outline-none focus:ring-2 focus:ring-primary/20" onclick="toggleFaq(this)">
+                        Ensina sobre Primeiros Socorros?
+                        <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shrink-0 ml-4 border border-gray-200">
+                            <i class="fas fa-plus text-primary transition-transform duration-300 text-sm"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6 bg-white">
+                        <p class="pb-6 text-gray-600">Sim! Abordamos a composição ideal de um Kit Médico e ferramentas de sobrevivência e manutenção da vida.</p>
+                    </div>
+                </div>
+                <!-- Question 8 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden fade-in bg-white shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full text-left p-6 font-bold text-lg text-dark flex justify-between items-center outline-none focus:ring-2 focus:ring-primary/20" onclick="toggleFaq(this)">
+                        Ensina a montar um kit fogo para utilizar na trilha?
+                        <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shrink-0 ml-4 border border-gray-200">
+                            <i class="fas fa-plus text-primary transition-transform duration-300 text-sm"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6 bg-white">
+                        <p class="pb-6 text-gray-600">Sim. Mostramos o que é importante de se ter no kit e como armazená-lo corretamente.</p>
+                    </div>
+                </div>
+                <!-- Question 9 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden fade-in bg-white shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full text-left p-6 font-bold text-lg text-dark flex justify-between items-center outline-none focus:ring-2 focus:ring-primary/20" onclick="toggleFaq(this)">
+                        Ensina a purificar água na trilha?
+                        <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shrink-0 ml-4 border border-gray-200">
+                            <i class="fas fa-plus text-primary transition-transform duration-300 text-sm"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6 bg-white">
+                        <p class="pb-6 text-gray-600">Mostramos o processo completo de purificação utilizando pastilhas, cloro líquido e fervura para que você nunca fique sem hidratação segura.</p>
+                    </div>
+                </div>
+                <!-- Question 10 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden fade-in bg-white shadow-sm hover:shadow-md transition-shadow">
+                    <button class="w-full text-left p-6 font-bold text-lg text-dark flex justify-between items-center outline-none focus:ring-2 focus:ring-primary/20" onclick="toggleFaq(this)">
+                        Quais as formas de pagamento?
+                        <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center shrink-0 ml-4 border border-gray-200">
+                            <i class="fas fa-plus text-primary transition-transform duration-300 text-sm"></i>
+                        </div>
+                    </button>
+                    <div class="faq-answer px-6 bg-white">
+                        <p class="pb-6 text-gray-600">Você pode pagar via Pix, Cartão de Crédito ou Boleto. A transação é 100% gerenciada pela Hotmart, a maior plataforma de infoprodutos da América Latina.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <footer class="bg-primary text-white pt-24 pb-12 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504280390227-331bfcb19af2?auto=format&fit=crop&q=80&w=1920')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+        <div class="container mx-auto px-6 relative z-10 fade-in">
+            <h2 class="text-4xl md:text-5xl font-black mb-6 leading-tight">Sua próxima aventura não precisa virar um <span class="text-accent">perrengue.</span></h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto font-light">Não deixe para aprender na prática o que você pode prevenir hoje. A natureza é implacável com quem não se prepara. Dê o primeiro passo agora.</p>
+            <a href="https://hotmart.com/pt-br/marketplace/produtos/acampe-sem-passar-perrengue/V80320834A" class="btn-cta inline-flex justify-center items-center text-white font-bold text-xl md:text-2xl px-10 py-6 rounded-2xl shadow-2xl mb-16 w-full md:w-auto">
+                QUERO ME PREPARAR PARA MINHA PRÓXIMA AVENTURA
+            </a>
+            
+            <div class="border-t border-white/20 pt-8 max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm gap-4">
+                <p>© 2026 Acampe Sem Passar Perrengue.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-white transition-colors">Termos de Uso</a>
+                    <a href="#" class="hover:text-white transition-colors">Política de Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Premium FAQ Accordion
+        function toggleFaq(btn) {
+            const answer = btn.nextElementSibling;
+            const icon = btn.querySelector('i');
+            
+            // Close all others
+            document.querySelectorAll('.faq-answer').forEach(el => {
+                if(el !== answer) {
+                    el.classList.remove('open');
+                    el.previousElementSibling.querySelector('i').classList.replace('fa-minus', 'fa-plus');
+                    el.previousElementSibling.querySelector('i').style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            answer.classList.toggle('open');
+            if(answer.classList.contains('open')) {
+                icon.classList.replace('fa-plus', 'fa-minus');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.classList.replace('fa-minus', 'fa-plus');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
